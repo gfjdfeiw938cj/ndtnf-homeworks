@@ -3,7 +3,9 @@ import { CreateProductsDto } from './dto/create-products.dto';
 import { updateProductsDto } from './dto/update-products.dto';
 import { logicService } from 'src/logicService/logic.service';
 import { Product } from 'src/schemas/product.schema';
-
+import { UseInterceptors } from '@nestjs/common/decorators';
+// import { InterceptorInterceptor } from 'src/interceptor/interceptor/interceptor.interceptor';
+// @UseInterceptors(InterceptorInterceptor)
 
 @Controller('product')
 export class ProductsController {
