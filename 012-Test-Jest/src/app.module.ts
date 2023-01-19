@@ -1,16 +1,19 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BookService } from './book/book.service';
-import { BookController } from './book/book.controller';
-import { MongooseModule } from '@nestjs/mongoose';
-import { BookModule } from './book/book.module';
-import "dotenv/config";
+import { ProductsController } from './products/products.controller';
+import { logicService } from './logicService/logic.service';
+import { Product, ProductSchema } from './schemas/product.schema';
+import { ProductsModule } from './products/products.modules';
 
 
 @Module({
-  imports: [MongooseModule.forRoot(`${process.env.MONGODB_CONNECTION_STRING}`, { useFindAndModify: false }), BookModule, ],
-  controllers: [AppController /*, BookController*/],
-  providers: [AppService/*, BookService*/],
+  imports: [
+    ProductsModule,
+    MongooseModule.forRoot("mongodb://127.0.0.1:27017/")
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
